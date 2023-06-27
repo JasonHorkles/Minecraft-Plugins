@@ -1,0 +1,6 @@
+main: me.jasonhorkles.hardcore.Main
+name: Hardcore
+description: Designed for hardcore servers to make them softer
+version: %VERSION%
+author: JasonHorkles
+api-version: 1.19
