@@ -3,4 +3,4 @@ name: Hardcore
 description: Designed for hardcore servers to make them softer
 version: %VERSION%
 author: JasonHorkles
-api-version: 1.19
+api-version: '1.20'

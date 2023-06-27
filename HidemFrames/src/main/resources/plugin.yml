@@ -1,0 +1,23 @@
+main: me.jasonhorkles.hidemframes.HidemFrames
+name: HidemFrames
+description: Hide item frames with simple commands
+version: %VERSION%
+author: JasonHorkles
+api-version: '1.20'
+
+commands:
+  hideitemframe:
+    description: "Hide item frames"
+    permission: hidemframe.hideitemframe
+  
+  masshideitemframes:
+    description: "Hide multiple item frames quickly"
+    permission: hidemframe.masshideitemframe
+
+permissions:
+  hidemframe.hideitemframe:
+    default: op
+    description: Hide item frames
+  hidemframe.masshideitemframe:
+    default: op
+    description: Hide multiple item frames quickly
