@@ -6,11 +6,11 @@
 
     <groupId>me.jasonhorkles</groupId>
     <artifactId>Hardcore</artifactId>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
 
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -66,6 +66,17 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.16.0</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                    <allowMajorUpdates>true</allowMajorUpdates>
+                    <allowMinorUpdates>true</allowMinorUpdates>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -84,4 +95,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
 </project>
