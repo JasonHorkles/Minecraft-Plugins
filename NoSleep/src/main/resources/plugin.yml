@@ -1,0 +1,14 @@
+main: me.jasonhorkles.nosleep.NoSleep
+name: NoSleep
+description: Prevent players from sleeping
+version: %VERSION%
+author: JasonHorkles
+api-version: '1.21'
+
+commands:
+  nosleep:
+    description: "Prevent players from sleeping for the night"
+    aliases: [ "preventsleep" ]
+  
+  allowsleep:
+    description: "Allow players to sleep again"
