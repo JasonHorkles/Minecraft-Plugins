@@ -3,6 +3,8 @@ package me.jasonhorkles.nosleep;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,6 +27,8 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
 
         switch (cmd.getName().toLowerCase()) {
             case "nosleep" -> {
+                if (!player.getWorld().equals(Bukkit.getWorld("survival"))) return false;
+
                 if (preventSleep) {
                     player.sendMessage(Component.text("Sleep is already being prevented.",
                         NamedTextColor.RED));
@@ -63,9 +67,14 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
 
     @EventHandler
     public void onBedEnter(PlayerBedEnterEvent event) {
-        if (preventSleep) {
+        World world = Bukkit.getWorld("survival");
+        if (!event.getPlayer().getWorld().equals(world)) return;
+
+        if (preventSleep) if (!world.isDayTime()) {
             event.setCancelled(true);
-            event.getPlayer().showTitle(Title.title(Component.text(
+
+            event.getPlayer().showTitle(Title.title(
+                Component.text(
                     playerPreventing.getName(),
                     NamedTextColor.GOLD),
                 Component.text("is preventing sleep", NamedTextColor.YELLOW)));

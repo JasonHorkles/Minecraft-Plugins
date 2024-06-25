@@ -1,6 +1,7 @@
 package me.jasonhorkles.nosleep;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,12 +18,13 @@ public class NoSleep extends JavaPlugin implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (Events.preventSleep) if (Bukkit.getWorld("survival").isDayTime()) {
+                World world = Bukkit.getWorld("survival");
+                if (world.getTime() >= 23500 && world.getTime() <= 23530) if (Events.preventSleep) {
                     Events.preventSleep = false;
                     Events.playerPreventing = null;
                     getLogger().info("Sleep has been allowed again.");
                 }
             }
-        }.runTaskTimer(this, 0, 20 * 30);
+        }.runTaskTimer(this, 0, 20);
     }
 }

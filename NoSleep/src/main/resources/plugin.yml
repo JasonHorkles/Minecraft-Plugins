@@ -9,6 +9,7 @@ commands:
   nosleep:
     description: "Prevent players from sleeping for the night"
     aliases: [ "preventsleep" ]
+    usage: "§cYou must be in the overworld to prevent sleep!"
   
   allowsleep:
     description: "Allow players to sleep again"
