@@ -38,7 +38,8 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
                 preventSleep = true;
                 playerPreventing = player;
                 for (Player players : plugin.getServer().getOnlinePlayers())
-                    players.sendMessage(Component.text(player.getName() + " is preventing sleep.",
+                    players.sendMessage(Component.text(
+                        player.getName() + " is preventing sleep for the night.",
                         NamedTextColor.YELLOW));
             }
 
@@ -57,7 +58,8 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
 
                 preventSleep = false;
                 for (Player players : plugin.getServer().getOnlinePlayers())
-                    players.sendMessage(Component.text(player.getName() + " is no longer preventing sleep.",
+                    players.sendMessage(Component.text(
+                        player.getName() + " is no longer preventing sleep tonight.",
                         NamedTextColor.GREEN));
             }
         }
