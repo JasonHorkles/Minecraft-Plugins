@@ -4,7 +4,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@SuppressWarnings({"ConstantConditions", "unused"})
+@SuppressWarnings({"unused"})
 public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {

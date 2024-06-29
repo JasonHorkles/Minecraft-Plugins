@@ -33,15 +33,16 @@ public record Revive(JavaPlugin plugin) implements Listener {
                 if (players.getGameMode() == GameMode.SPECTATOR) deadPlayers++;
 
             if (deadPlayers == 0) {
-                event.getPlayer()
-                    .sendMessage(Component.text("There are no dead players!").color(NamedTextColor.RED));
+                event.getPlayer().sendMessage(Component.text("There are no dead players!")
+                    .color(NamedTextColor.RED));
                 return;
             }
 
             World world = event.getClickedBlock().getWorld();
             Location location = event.getClickedBlock().getLocation().toCenterLocation();
-            Location lightningLoc = event.getClickedBlock().getLocation().toCenterLocation()
-                .subtract(0, 0.5, 0);
+            Location lightningLoc = event.getClickedBlock().getLocation().toCenterLocation().subtract(0,
+                0.5,
+                0);
 
             world.strikeLightningEffect(lightningLoc);
             world.setType(location, Material.AIR);
@@ -74,15 +75,23 @@ public record Revive(JavaPlugin plugin) implements Listener {
                         }
 
                     world.playSound(location, Sound.ITEM_TOTEM_USE, SoundCategory.MASTER, 5f, 1f);
-                    world.spawnParticle(Particle.TOTEM, location, 1000, -2f, 3f, -2f, 5f, null, true);
+                    world.spawnParticle(Particle.TOTEM_OF_UNDYING,
+                        location,
+                        1000,
+                        -2f,
+                        3f,
+                        -2f,
+                        5f,
+                        null,
+                        true);
                     world.spawnParticle(Particle.CLOUD, location, 1000, 0f, 0f, 0f, 0.75f, null, true);
                 }
             };
             respawn.runTaskLater(plugin, 60);
         } else if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.GLOWSTONE) {
             event.setCancelled(true);
-            event.getPlayer()
-                .sendMessage(Component.text("The Anchor isn't fully charged!").color(NamedTextColor.RED));
+            event.getPlayer().sendMessage(Component.text("The Anchor isn't fully charged!")
+                .color(NamedTextColor.RED));
         }
     }
 
@@ -98,8 +107,9 @@ public record Revive(JavaPlugin plugin) implements Listener {
                     if (players.getGameMode() == GameMode.SPECTATOR) dead.add(players);
                     else alive.add(players);
 
-                if (alive.size() > 0) for (Player players : dead)
-                    players.teleportAsync(alive.get(0).getLocation().add(0, 0.5, 0),
+                if (!alive.isEmpty()) for (Player players : dead)
+                    players.teleportAsync(
+                        alive.getFirst().getLocation().add(0, 0.5, 0),
                         PlayerTeleportEvent.TeleportCause.PLUGIN);
             }
         };
@@ -112,8 +122,8 @@ public record Revive(JavaPlugin plugin) implements Listener {
             if (blocks.getType() == Material.RESPAWN_ANCHOR) {
                 event.setCancelled(true);
                 for (Player players : Bukkit.getOnlinePlayers())
-                    players.sendMessage(
-                        Component.text("Cancelled a potential explosion bug!").color(NamedTextColor.RED));
+                    players.sendMessage(Component.text("Cancelled a potential explosion bug!")
+                        .color(NamedTextColor.RED));
                 break;
             }
     }
