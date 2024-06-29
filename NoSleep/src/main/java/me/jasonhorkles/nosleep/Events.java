@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -80,6 +81,19 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
                     playerPreventing.getName(),
                     NamedTextColor.GOLD),
                 Component.text("is preventing sleep", NamedTextColor.YELLOW)));
+        }
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent event) {
+        if (event.getPlayer().equals(playerPreventing)) {
+            preventSleep = false;
+            playerPreventing = null;
+
+            for (Player players : plugin.getServer().getOnlinePlayers())
+                players.sendMessage(Component.text(
+                    event.getPlayer().getName() + " is no longer preventing sleep due to leaving.",
+                    NamedTextColor.GREEN));
         }
     }
 }
