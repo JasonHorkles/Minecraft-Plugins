@@ -32,7 +32,7 @@ public class Events implements Listener {
 
     @EventHandler
     public void onAnvil(InventoryCloseEvent event) {
-        if (event.getInventory().getType() == InventoryType.ANVIL) setSize((Player) event.getPlayer());
+        if (event.getInventory().getType() != InventoryType.PLAYER) setSize((Player) event.getPlayer());
     }
 
     @EventHandler
