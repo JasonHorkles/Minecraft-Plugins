@@ -46,9 +46,7 @@ public class Events implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-
                 int xp = getTotalExperience(player);
-                System.out.println(xp);
 
                 double newScale;
                 // 550 = level 20
